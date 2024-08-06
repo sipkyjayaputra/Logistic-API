@@ -1,0 +1,365 @@
+{
+  "info": {
+    "name": "Container Management API",
+    "_postman_id": "a0b1c2d3-e4f5-6789-abcd-ef0123456789",
+    "description": "API Collection for managing Containers, Packing Lists, and Products",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Containers",
+      "item": [
+        {
+          "name": "Get All Containers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/containers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "containers"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Container",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"name\": \"Container 1\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/containers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "containers"
+              ]
+            }
+          }
+        },
+          {
+            "name": "Get Container by ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/containers/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "containers",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Container",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Updated Container\"\n}"
+              },
+              "url": {
+                "raw": "http://localhost:8080/containers/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "containers",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Container",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/containers/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "containers",
+                  ":id"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Packing Lists",
+        "item": [
+          {
+            "name": "Get All Packing Lists",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/packinglists",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "packinglists"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Create Packing List",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Packing List 1\",\n\t\"container_id\": 1\n}"
+              },
+              "url": {
+                "raw": "http://localhost:8080/packinglists",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "packinglists"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Packing List by ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/packinglists/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "packinglists",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Packing List",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Updated Packing List\",\n\t\"container_id\": 1\n}"
+              },
+              "url": {
+                "raw": "http://localhost:8080/packinglists/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "packinglists",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Packing List",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/packinglists/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "packinglists",
+                  ":id"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Products",
+        "item": [
+          {
+            "name": "Get All Products",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/products",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "products"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Create Product",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Product 1\",\n\t\"packing_list_id\": 1\n}"
+              },
+              "url": {
+                "raw": "http://localhost:8080/products",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "products"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Product by ID",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/products/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "products",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Update Product",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Updated Product\",\n\t\"packing_list_id\": 1\n}"
+              },
+              "url": {
+                "raw": "http://localhost:8080/products/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "products",
+                  ":id"
+                ]
+              }
+            }
+          },
+          {
+            "name": "Delete Product",
+            "request": {
+              "method": "DELETE",
+              "header": [],
+              "url": {
+                "raw": "http://localhost:8080/products/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "8080",
+                "path": [
+                  "products",
+                  ":id"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
