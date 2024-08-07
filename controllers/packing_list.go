@@ -27,7 +27,7 @@ func CreatePackingList(c *gin.Context) {
 func GetPackingList(c *gin.Context) {
 	id := c.Param("id")
 	var packingList models.PackingList
-	if err := database.DB.First(&packingList, id).Error; err != nil {
+	if err := database.DB.Preload("CommercialInvoice.Products").Preload("CommercialInvoice").First(&packingList, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Packing List not found"})
 		return
 	}
