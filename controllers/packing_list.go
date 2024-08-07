@@ -10,7 +10,7 @@ import (
 
 func GetPackingLists(c *gin.Context) {
 	var packingLists []models.PackingList
-	database.DB.Preload("Container").Find(&packingLists)
+	database.DB.Find(&packingLists)
 	c.JSON(http.StatusOK, packingLists)
 }
 
@@ -31,29 +31,6 @@ func GetPackingList(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Packing List not found"})
 		return
 	}
-
-	var products []models.Product
-	if err := database.DB.Where("packing_list_id = ?", packingList.Model.ID).Find(&products).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Error retrieving products"})
-		return
-	}
-	packingList.Products = products
-
-	var (
-		totalGrossWeight float64
-		totalNettWeight  float64
-	)
-	var (
-		totalPackages int
-	)
-	for _, prd := range products {
-		totalGrossWeight += prd.GrossWeight
-		totalNettWeight += prd.NettWeight
-		totalPackages += prd.NumPackages
-	}
-	packingList.TotalGrossWeight = totalGrossWeight
-	packingList.TotalNettWeight = totalNettWeight
-	packingList.TotalPackages = totalPackages
 
 	c.JSON(http.StatusOK, packingList)
 }
