@@ -19,4 +19,6 @@ func ConnectDatabase() {
 	database.AutoMigrate(&models.User{}, &models.PaymentTerm{}, &models.CommercialInvoice{}, &models.Package{}, &models.Product{}, &models.PackingList{})
 
 	DB = database
+
+	initPaymenTerm()
 }
