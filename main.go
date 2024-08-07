@@ -3,6 +3,7 @@ package main
 import (
 	"logistic-api/controllers"
 	"logistic-api/database"
+	"logistic-api/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,23 +13,31 @@ func main() {
 
 	database.ConnectDatabase()
 
-	// r.GET("/containers", controllers.GetContainers)
-	// r.POST("/containers", controllers.CreateContainer)
-	// r.GET("/containers/:id", controllers.GetContainer)
-	// r.PUT("/containers/:id", controllers.UpdateContainer)
-	// r.DELETE("/containers/:id", controllers.DeleteContainer)
+	// Public routes
+	r.POST("/register", controllers.Register)
+	r.POST("/login", controllers.Login)
 
-	r.GET("/packinglists", controllers.GetPackingLists)
-	r.POST("/packinglists", controllers.CreatePackingList)
-	r.GET("/packinglists/:id", controllers.GetPackingList)
-	r.PUT("/packinglists/:id", controllers.UpdatePackingList)
-	r.DELETE("/packinglists/:id", controllers.DeletePackingList)
+	// Protected routes
+	authorized := r.Group("/")
+	authorized.Use(middleware.AuthMiddleware())
 
-	r.GET("/products", controllers.GetProducts)
-	r.POST("/products", controllers.CreateProduct)
-	r.GET("/products/:id", controllers.GetProduct)
-	r.PUT("/products/:id", controllers.UpdateProduct)
-	r.DELETE("/products/:id", controllers.DeleteProduct)
+	authorized.GET("/containers", controllers.GetContainers)
+	authorized.POST("/containers", controllers.CreateContainer)
+	authorized.GET("/containers/:id", controllers.GetContainer)
+	authorized.PUT("/containers/:id", controllers.UpdateContainer)
+	authorized.DELETE("/containers/:id", controllers.DeleteContainer)
+
+	authorized.GET("/packinglists", controllers.GetPackingLists)
+	authorized.POST("/packinglists", controllers.CreatePackingList)
+	authorized.GET("/packinglists/:id", controllers.GetPackingList)
+	authorized.PUT("/packinglists/:id", controllers.UpdatePackingList)
+	authorized.DELETE("/packinglists/:id", controllers.DeletePackingList)
+
+	authorized.GET("/products", controllers.GetProducts)
+	authorized.POST("/products", controllers.CreateProduct)
+	authorized.GET("/products/:id", controllers.GetProduct)
+	authorized.PUT("/products/:id", controllers.UpdateProduct)
+	authorized.DELETE("/products/:id", controllers.DeleteProduct)
 
 	r.Run()
 }
