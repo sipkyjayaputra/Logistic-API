@@ -21,35 +21,47 @@ func main() {
 	authorized := r.Group("/")
 	authorized.Use(middleware.AuthMiddleware())
 
+	// PaymentTerm routes
 	authorized.GET("/payment-terms", controllers.GetPaymentTerms)
 	authorized.POST("/payment-terms", controllers.CreatePaymentTerm)
 	authorized.GET("/payment-terms/:id", controllers.GetPaymentTerm)
 	authorized.PUT("/payment-terms/:id", controllers.UpdatePaymentTerm)
 	authorized.DELETE("/payment-terms/:id", controllers.DeletePaymentTerm)
 
+	// CommercialInvoice routes
 	authorized.GET("/commercial-invoices", controllers.GetCommercialInvoices)
 	authorized.POST("/commercial-invoices", controllers.CreateCommercialInvoice)
 	authorized.GET("/commercial-invoices/:id", controllers.GetCommercialInvoice)
 	authorized.PUT("/commercial-invoices/:id", controllers.UpdateCommercialInvoice)
 	authorized.DELETE("/commercial-invoices/:id", controllers.DeleteCommercialInvoice)
 
+	// Package routes
 	authorized.GET("/packages", controllers.GetPackages)
 	authorized.POST("/packages", controllers.CreatePackage)
 	authorized.GET("/packages/:id", controllers.GetPackage)
 	authorized.PUT("/packages/:id", controllers.UpdatePackage)
 	authorized.DELETE("/packages/:id", controllers.DeletePackage)
 
+	// Product routes
 	authorized.GET("/products", controllers.GetProducts)
 	authorized.POST("/products", controllers.CreateProduct)
 	authorized.GET("/products/:id", controllers.GetProduct)
 	authorized.PUT("/products/:id", controllers.UpdateProduct)
 	authorized.DELETE("/products/:id", controllers.DeleteProduct)
 
+	// PackingList routes
 	authorized.GET("/packing-lists", controllers.GetPackingLists)
 	authorized.POST("/packing-lists", controllers.CreatePackingList)
 	authorized.GET("/packing-lists/:id", controllers.GetPackingList)
 	authorized.PUT("/packing-lists/:id", controllers.UpdatePackingList)
 	authorized.DELETE("/packing-lists/:id", controllers.DeletePackingList)
+
+	// Company routes
+	authorized.GET("/companies", controllers.GetCompanies)
+	authorized.POST("/companies", controllers.CreateCompany)
+	authorized.GET("/companies/:id", controllers.GetCompany)
+	authorized.PUT("/companies/:id", controllers.UpdateCompany)
+	authorized.DELETE("/companies/:id", controllers.DeleteCompany)
 
 	r.Run()
 }
